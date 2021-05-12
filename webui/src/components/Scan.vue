@@ -95,7 +95,7 @@ function toDeviceType(respData) {
 
 function toIncompatible(respData) {
   // versions < v1.2.0 are incompatible
-  return Boolean(parseInt(respData.device.sw_version.replaceAll('v', '').replaceAll('.', '')) < 120)
+  return Boolean(parseInt(respData.device.sw_version.replace('v', '').replace(/./g, '')) < 120)
 }
 
 // structure of a device: v1
