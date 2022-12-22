@@ -22,7 +22,7 @@
 #include <Wire.h>
 #include <driver/ledc.h>
 #include "SystemNanoV3.h"
-#include "temperature/TemperatureMax11615.h"
+#include "temperature/TemperatureMcp3208.h"
 #include "display/DisplayOled.h"
 #include "Constants.h"
 
@@ -98,14 +98,10 @@ void SystemNanoVx::init()
 
   // initialize temperatures
   this->wireLock();
-  temperatures.add(new TemperatureMax11615(0u, &Wire));
-  temperatures.add(new TemperatureMax11615(1u, &Wire));
-  temperatures.add(new TemperatureMax11615(2u, &Wire));
-  temperatures.add(new TemperatureMax11615(3u, &Wire));
-  temperatures.add(new TemperatureMax11615(4u, &Wire));
-  temperatures.add(new TemperatureMax11615(5u, &Wire));
-  temperatures.add(new TemperatureMax11615(6u, &Wire));
-  temperatures.add(new TemperatureMax11615(7u, &Wire));
+  temperatures.add(new TemperatureMcp3208(0u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(1u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(2u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(3u, CS_MCP3208));
   this->wireRelease();
 
   // add blutetooth feature
