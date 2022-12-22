@@ -43,6 +43,11 @@ DisplayBase *gDisplay = new DisplayTft();
 #include "display/DisplayOled.h"
 SystemBase *gSystem = new SystemNanoVx();
 DisplayBase *gDisplay = new DisplayOled();
+#elif HW_NANO_LOLIND32
+#include "system/SystemNanoLolinD32.h"
+#include "display/DisplayOled.h"
+SystemBase *gSystem = new SystemNanoVx();
+DisplayBase *gDisplay = new DisplayOled();
 #elif HW_LINK_V1
 #include "system/SystemLinkV1.h"
 #include "display/DisplayOledLink.h"
