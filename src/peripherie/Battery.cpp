@@ -27,14 +27,14 @@
 #include <esp_adc_cal.h>
 #include "ArduinoLog.h"
 
-#define BATTERY_ADC_IO 39u
-#define BATTERTY_CHARGE_IO 35u
+#define BATTERY_ADC_IO 35u
+#define BATTERTY_CHARGE_IO 39u
 #define BATTERY_USB_IO 34u
 #define MEDIAN_SIZE 30u
 #define PERCENTAGE_UPDATE_CYCLE 30u // 30 seconds
 #define BATTMIN 3500        // MINIMUM BATTERY VOLTAGE in mV
 #define BATTMAX 4180        // MAXIMUM BATTERY VOLTAGE in mV
-#define BATTDIV 5.7F        // VOLTAGE DIVIDER
+#define BATTDIV 2.0F        // VOLTAGE DIVIDER
 #define CORRECTIONTIME 60000
 #define BATTERYSTARTUP 20000
 #define REF_VOLTAGE_DEFAULT 1120
