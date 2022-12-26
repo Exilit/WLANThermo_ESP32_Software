@@ -38,7 +38,7 @@
 
 #if defined(HW_MINI_V1) || defined(HW_MINI_V2) || defined(HW_MINI_V3) || defined(HW_CONNECT_V1)
 #define WEB_SUBFOLDER "mini"
-#elif HW_NANO_V3
+#elif defined(HW_NANO_V3) || defined(HW_NANO_LOLIND32)
 #define WEB_SUBFOLDER "nano"
 #elif HW_LINK_V1
 #define WEB_SUBFOLDER "link"
