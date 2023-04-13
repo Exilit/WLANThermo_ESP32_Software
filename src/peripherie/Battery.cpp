@@ -37,7 +37,7 @@
 #define BATTDIV 2.0F        // VOLTAGE DIVIDER
 #define CORRECTIONTIME 60000
 #define BATTERYSTARTUP 20000
-#define REF_VOLTAGE_DEFAULT 1120
+#define REF_VOLTAGE_DEFAULT 2090
 
 esp_adc_cal_characteristics_t *adc_chars = new esp_adc_cal_characteristics_t;
 
@@ -47,8 +47,8 @@ Battery::Battery()
   pinMode(BATTERY_USB_IO, INPUT_PULLDOWN);              // hat kein Pulldown
 
   // Calibration function
-  analogSetPinAttenuation(BATTERY_ADC_IO, ADC_0db);
-  analogReadResolution(10u);
+  analogSetPinAttenuation(BATTERY_ADC_IO, ADC_11db);
+  analogReadResolution(12u);
 
   this->min = BATTMIN;
   this->max = BATTMAX;
@@ -61,7 +61,7 @@ Battery::Battery()
   adcRawMedian = new MedianFilter<uint16_t>(MEDIAN_SIZE);
   loadConfig();
 
-  esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_0, ADC_WIDTH_BIT_10, this->refvoltage, adc_chars);
+  esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, this->refvoltage, adc_chars);
   updatePowerMode();
 }
 
