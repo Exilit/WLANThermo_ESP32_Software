@@ -21,10 +21,13 @@
 #include <SPI.h>
 #include <Wire.h>
 #include <driver/ledc.h>
-#include "SystemNanoV3.h"
+#include "SystemNanoLolinD32.h"
 #include "temperature/TemperatureMcp3208.h"
 #include "display/DisplayOled.h"
 #include "Constants.h"
+
+// TEMPERATURES
+#define CS_MCP3208 0u
 
 // PITMASTER
 #define PITMASTER0IO1 25u   // Fan Pin
@@ -96,13 +99,20 @@ void SystemNanoVx::init()
   hardwareVersion = 3u;
   wlan.setHostName(DEFAULT_HOSTNAME + String(serialNumber));
 
+  // configure PIN mode
+  pinMode(CS_MCP3208, OUTPUT);
+
+  // set initial PIN state
+  digitalWrite(CS_MCP3208, HIGH);
+
+  // initialize SPI interface
+  SPI.begin();
+
   // initialize temperatures
-  this->wireLock();
-  temperatures.add(new TemperatureMcp3208(0u, CS_MCP3208));
-  temperatures.add(new TemperatureMcp3208(1u, CS_MCP3208));
-  temperatures.add(new TemperatureMcp3208(2u, CS_MCP3208));
-  temperatures.add(new TemperatureMcp3208(3u, CS_MCP3208));
-  this->wireRelease();
+  temperatures.add(new TemperatureMcp3208(4u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(5u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(6u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(7u, CS_MCP3208));
 
   // add blutetooth feature
   bluetooth = new Bluetooth(&Serial2, BLE_RESET_PIN);
