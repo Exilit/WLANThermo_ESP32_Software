@@ -160,9 +160,11 @@ void Battery::updatePowerMode()
   // Supply & Charging Detection
   this->usbPowerEnabled = digitalRead(BATTERY_USB_IO);
   this->chargeEnabled = (true == this->usbPowerEnabled) ? !digitalRead(BATTERTY_CHARGE_IO) : false;
+  // Serial.printf("ENABLED: %d %d\n", this->usbPowerEnabled, this->chargeEnabled);
 
   // Battery Digital Value Measurement
   this->adcRawValue = analogRead(BATTERY_ADC_IO);
+  // Serial.printf("BATTERY VOLTAGES: %d %d %d\n", analogRead(BATTERY_ADC_IO), analogRead(BATTERTY_CHARGE_IO), analogRead(BATTERY_USB_IO));
   
   // Switch Position Detection
   this->switchedOff = (20u > this->adcRawValue) ? true : false;
@@ -195,6 +197,7 @@ void Battery::updatePowerMode()
 
   this->adcvoltage = adcRawVol * BATTDIV;
   this->voltage = adcFilteredVol * BATTDIV;
+  // Serial.printf("VOLTAGES: %d %d %d %d\n", adcRawVol, adcFilteredVol, this->adcvoltage, this->voltage);
 
    // Power Mode Selection
   if (this->nobattery == true)
