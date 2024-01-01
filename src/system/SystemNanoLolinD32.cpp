@@ -109,10 +109,10 @@ void SystemNanoVx::init()
   SPI.begin();
 
   // initialize temperatures
-  temperatures.add(new TemperatureMcp3208(4u, CS_MCP3208));
-  temperatures.add(new TemperatureMcp3208(5u, CS_MCP3208));
-  temperatures.add(new TemperatureMcp3208(6u, CS_MCP3208));
   temperatures.add(new TemperatureMcp3208(7u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(6u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(5u, CS_MCP3208));
+  temperatures.add(new TemperatureMcp3208(4u, CS_MCP3208));
 
   // add blutetooth feature
   bluetooth = new Bluetooth(&Serial2, BLE_RESET_PIN);
